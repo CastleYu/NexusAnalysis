@@ -76,5 +76,5 @@ def plot_read_write_counts(timestamps, read_counts, write_counts, file_name):
 
 # 处理指定目录中的所有日志文件
 os.makedirs("rwcount_img_date", exist_ok=True)
-directory_path = r'H:\Documents\Prometheus\BigData\Nexus5\Nexus5_Kernel_BIOTracer_traces\WorkSpace_nexus5\Trace_files'  # 替换为包含日志文件的目录路径
+directory_path = r'..\Nexus5_Kernel_BIOTracer_traces\WorkSpace_nexus5\Trace_files'  # 替换为包含日志文件的目录路径
 process_trace_directory_for_plots(directory_path)

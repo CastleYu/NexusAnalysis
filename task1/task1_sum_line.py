@@ -106,4 +106,5 @@ table.scale(1.2, 1.2)
 
 plt.title('Load total number of requests and read/write ratio', fontsize=14)
 plt.savefig('负载总的请求数量和读写比例_sum_line.pdf', format='pdf', bbox_inches='tight')
+plt.savefig('负载总的请求数量和读写比例_sum_line.png')
 plt.show()

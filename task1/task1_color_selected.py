@@ -31,8 +31,9 @@ def process_trace_file(file_path):
                 read_count += 1
             else:
                 write_count += 1
-
-    iops = round(io_count / (max_time - min_time), 2) if max_time > min_time else 0
+    iops = round(io_count / (max_time - min_time), 2) if max_time > min_time else -1
+    if iops < 1:
+        print(io_count, max_time, min_time)
     read_percentage = round(100 * read_count / io_count, 1) if io_count > 0 else 0
     write_percentage = round(100 * write_count / io_count, 1) if io_count > 0 else 0
     rd_wt_ratio = f"{read_percentage}/{write_percentage}"
@@ -40,7 +41,7 @@ def process_trace_file(file_path):
     total_size = round(total_io_size / 1024 / 1024, 1) if io_count != 0 else "N/A"
 
     return {
-        'Name': os.path.basename(file_path),
+        'Name': os.path.basename(file_path).rsplit('.')[0].split('_', 1)[1],
         'Number of IOs': io_count,
         'IOPS': iops,
         'RD/WT Ratio': rd_wt_ratio,
@@ -73,7 +74,7 @@ df = pd.DataFrame(results,
                            'Read Percentage', 'Write Percentage'])
 
 # 输出表格并保存为PDF
-fig, ax = plt.subplots(figsize=(15, 3))
+fig, ax = plt.subplots(figsize=(8, 2))
 ax.axis('off')
 table = ax.table(cellText=df.drop(columns=['Read Percentage', 'Write Percentage']).values,
                  colLabels=df.drop(columns=['Read Percentage', 'Write Percentage']).columns, loc='center',
@@ -92,6 +93,5 @@ for i, row in df.iterrows():
         cell = table[i + 1, j]
         cell.set_text_props(color=color)
 
-plt.title('Load total number of requests and read/write ratio', fontsize=14)
 plt.savefig('负载总的请求数量和读写比例_color.pdf', format='pdf', bbox_inches='tight')
 plt.show()

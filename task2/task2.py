@@ -45,7 +45,6 @@ def process_trace_directory_for_plots(directory_path):
 
 # 绘制读写请求随时间变化的图表
 def plot_read_write_counts(timestamps, read_counts, write_counts, file_name):
-
     plt.figure(figsize=(10, 6))
     plt.plot(timestamps, read_counts, color='green', label='Reads')
     plt.plot(timestamps, write_counts, color='red', label='Writes')
@@ -55,9 +54,9 @@ def plot_read_write_counts(timestamps, read_counts, write_counts, file_name):
     plt.legend()
     plt.grid(True)
     plt.savefig(f'rwcount_img/{file_name}_read_write_counts.png')
-    plt.show()
 
 
 # 处理指定目录中的所有日志文件
-directory_path = r'H:\Documents\Prometheus\BigData\Nexus5\Nexus5_Kernel_BIOTracer_traces\WorkSpace_nexus5\Trace_files'  # 替换为包含日志文件的目录路径
+os.makedirs("rwcount_img", exist_ok=True)
+directory_path = r'..\Nexus5_Kernel_BIOTracer_traces\WorkSpace_nexus5\Trace_files'  # 替换为包含日志文件的目录路径
 process_trace_directory_for_plots(directory_path)
