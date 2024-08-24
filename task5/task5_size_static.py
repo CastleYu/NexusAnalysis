@@ -57,12 +57,13 @@ def generate_summary_table(results):
 
     plt.title('Request Size Metrics for Different Trace Files', fontsize=14)
     plt.savefig('请求大小指标总表.pdf', format='pdf', bbox_inches='tight')
-    plt.show()
+    plt.savefig('请求大小指标总表.png')
 
 
 # 处理指定目录中的所有日志文件
 directory_path = r'H:\Documents\Prometheus\BigData\Nexus5\Nexus5_Kernel_BIOTracer_traces\WorkSpace_nexus5\Trace_files'  # 替换为包含日志文件的目录路径
 results = process_trace_directory_for_size_metrics(directory_path)
+
 
 # 生成总结表格
 generate_summary_table(results)

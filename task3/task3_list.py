@@ -67,7 +67,7 @@ def plot_average_iops_horizontal(results):
 
 
 # 处理指定目录中的所有日志文件
-directory_path = r'..\Nexus5\Nexus5_Kernel_BIOTracer_traces\WorkSpace_nexus5\Trace_files'  # 替换为包含日志文件的目录路径
+directory_path = r'..\Nexus5_Kernel_BIOTracer_traces\WorkSpace_nexus5\Trace_files'  # 替换为包含日志文件的目录路径
 results = process_trace_directory_for_iops(directory_path)
 
 # 绘制排序后的图表
